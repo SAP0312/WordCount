@@ -1,7 +1,8 @@
 package com.driver;
 
-import com.mapper.WMapper;
+
 import com.mapper.WordCountMapper;
+import com.reducer.WordCountReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -24,7 +25,7 @@ public class WordCountDriver extends Configured implements Tool {
         Job job = Job.getInstance(configuration,"Word Count");
         job.setJarByClass(WordCountDriver.class);
         job.setMapperClass(WordCountMapper.class);
-        job.setReducerClass(WReducer.class);
+        job.setReducerClass(WordCountReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         FileInputFormat.addInputPath(job,new Path(args[0]));
